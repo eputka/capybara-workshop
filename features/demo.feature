@@ -1,10 +1,15 @@
-Feature: Demo Feature
+Feature: Sign In with invalid credentials
 
-    Scenario: Open SignUp Page
+    Scenario: Open Sign Up screen and close it
         Given I am on Appimation home page
-        When I open Try now
-        Then I close Try now
-
-    Scenario: I can send contact us message
+        When I select Sign Up button
+        When I enter "edgars@mail.com", "manaparole", "manaparole", "mansprojekts" in Sign Up fields
+        Then I close Sign Up screen
+    
+    Scenario: Log in with invalid data
         Given I am on Appimation home page
-        When I enter "lalalalla" and "namemname" in name in contact us
+        When I select Login button
+        When I enter "test123@yopmail.com" in Email Address
+        When I enter "test123" in Password
+        Then I select Sign In button
+        Then I validate if error is visible
