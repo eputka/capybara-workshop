@@ -8,16 +8,34 @@ class LoginTest
     @pages.page_home.isVisible
   end
 
-  def validate_try_now
-    @pages.page_home.openTryNow
-    @pages.page_home.closeTryNow
+  def open_sign_up_view
+    @pages.page_home.openSignUp
   end
 
-  def submit_contact_form()
-    user = Users.contact_form_user
-    @pages.page_home.enterName(user.name)
+  def fill_sign_up_form
+    user = Users.fill_sign_up_form
     @pages.page_home.enterEmail(user.email)
-    @pages.page_home.enterMessage(user.message)
-    sleep(3)
+    @pages.page_home.enterPassword(user.password)
+    @pages.page_home.enterRetryPassword(user.password2)
+    @pages.page_home.enterProject(user.project)
+  end
+
+  def close_sign_up_form
+    @pages.page_home.closeSignUp
+  end
+
+  def open_log_in_view
+    @pages.page_home.openLogIn
+  end
+
+  def submit_invalid_log_in_form
+    user = Users.submit_invalid_log_in_form
+    @pages.page_home.enterLoginEmail(user.email)
+    @pages.page_home.enterLoginPassword(user.password)
+    @pages.page_home.selectLoginButton
+  end
+
+  def validate_error_message
+    @pages.page_home.validateInvalidCredentialsError
   end
 end
